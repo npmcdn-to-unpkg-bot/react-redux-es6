@@ -4,18 +4,21 @@ import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
+import toastr from 'toastr';
 
 class ManageCoursePage extends React.Component {
     constructor(props, content) {
-        console.log("ManageCourse constructor");
+
         super(props, content);
 
         this.state = {
             course: Object.assign({}, this.props.course),
-            error: {}
+            error: {},
+            saving: false
         };
         this.updateCourseState = this.updateCourseState.bind(this);
         this.saveCourse = this.saveCourse.bind(this);
+        console.log(content);
     }
 
 
@@ -33,10 +36,23 @@ class ManageCoursePage extends React.Component {
         return this.setState({course: course});
     }
 
+    // then: redirect only until promise is resolved
     saveCourse(event) {
         event.preventDefault();
-        this.props.actions.saveCourse(this.state.course);
+        this.setState({saving: true});
+        this.props.actions.saveCourse(this.state.course).then(() => {
+            this.redirect();
+        }).catch(error => {
+            this.setState({saving: false});
+            toastr.error(error);
+        });
         // this.context.router.push('/courses');
+
+    }
+
+    redirect() {
+        this.setState({saving: false});
+        toastr.success('Course saved');
         browserHistory.push('courses');
     }
 
@@ -47,7 +63,8 @@ class ManageCoursePage extends React.Component {
                 onChange={this.updateCourseState}
                 onSave={this.saveCourse}
                 course={this.state.course}
-                errors={this.state.errors}/>
+                errors={this.state.errors}
+                saving={this.state.saving}/>
         );
     }
 }
@@ -65,7 +82,6 @@ function getCourseById(courses, id) {
 
 // ownProps?
 function mapStateToProps(state, ownProps) {
-    console.log(ownProps);
     const courseId = ownProps.params.id; // from the path `course/:id`
     let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
 
