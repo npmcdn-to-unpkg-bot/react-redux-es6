@@ -3,7 +3,6 @@ import * as types from '../actions/actionTypes';
 export default function courseReducer(state = [], action) {
     switch(action.type) {
         case types.CREATE_COURSE:
-            console.log(...state);
             return [...state, action.course];
             
         default:
