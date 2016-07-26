@@ -3,8 +3,14 @@ import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
 const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
+    const _handleSubmit = (event) => {
+        debugger;
+        alert("ahh");
+
+    };
+
     return (
-        <form>
+        <form onSubmit={_handleSubmit(event)}>
             <h1>Manage Course</h1>
             <TextInput
                 name="title"

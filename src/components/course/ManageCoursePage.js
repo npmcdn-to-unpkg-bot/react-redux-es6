@@ -18,7 +18,6 @@ class ManageCoursePage extends React.Component {
         };
         this.updateCourseState = this.updateCourseState.bind(this);
         this.saveCourse = this.saveCourse.bind(this);
-        console.log(content);
     }
 
 
@@ -97,7 +96,6 @@ function mapStateToProps(state, ownProps) {
     });
 
     // Lam sao de console log state trong tung method
-    console.log(ManageCoursePage.state);
     return {
         course: course,
         authors: authorsFormattedForDropdown
