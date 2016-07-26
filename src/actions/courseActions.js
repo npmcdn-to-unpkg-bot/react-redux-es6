@@ -16,7 +16,7 @@ export function updateCourseSuccess(course) {
 }
 
 export function loadCourses() {
-    // always return a function then accpets a dispatch
+    // always return a function then accepts a dispatch
     return function(dispatch) {
         dispatch(beginAjaxCall());
         // thunk body

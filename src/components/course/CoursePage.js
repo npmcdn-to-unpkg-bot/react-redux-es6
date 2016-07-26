@@ -12,25 +12,6 @@ class CoursePage extends React.Component {
         this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
 
-    // onTitleChange(event) {
-    //     // const course = this.state.course;
-    //     // course.title = event.target.value; // <------
-    //     // { state: {course}} course.title
-    //     this.setState({course: {
-    //         title: event.target.value
-    //     }});
-    // }
-    //
-    // onClickSave() {
-    //     // this.props.dispatch(courseActions.createCourse(this.state.course));
-    //     this.props.actions.createCourse(this.state.course);
-    //     // this.props.actions.createCourse(this.state.course);
-    // }
-
-    courseRow(course, index) {
-        return <div key={index}>{course.title}</div>;
-    }
-
     redirectToAddCoursePage() {
         browserHistory.push('/course');
     }
