@@ -4,13 +4,12 @@ import SelectInput from '../common/SelectInput';
 
 const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
     const _handleSubmit = (event) => {
-        debugger;
+        event.preventDefault();
         alert("ahh");
-
     };
 
     return (
-        <form onSubmit={_handleSubmit(event)}>
+        <form onSubmit={_handleSubmit}>
             <h1>Manage Course</h1>
             <TextInput
                 name="title"
