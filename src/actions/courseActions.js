@@ -30,11 +30,12 @@ export function loadCourses() {
 }
 
 // dispatch to update store
-export function saveCourse(course) {
+export function saveCourse(course, isNewCourse) {
     return function(dispatch, getState) {
         dispatch(beginAjaxCall());
         return courseApi.saveCourse(course).then(savedCourse => {
-            course.id? dispatch(updateCourseSuccess(savedCourse)) :
+            console.log(course.id);
+            isNewCourse? dispatch(updateCourseSuccess(savedCourse)) :
                 dispatch(createCourseSuccess(savedCourse));
         }).catch(error => {
             dispatch(ajaxCallError());
