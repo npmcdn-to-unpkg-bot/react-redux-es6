@@ -10,10 +10,16 @@ class CoursePage extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this);
     }
 
     redirectToAddCoursePage() {
         browserHistory.push('/course');
+    }
+
+    deleteCourse(event, courseId) {
+        event.preventDefault();
+        this.props.actions.deleteCourse(courseId);
     }
 
     render() {
@@ -22,7 +28,7 @@ class CoursePage extends React.Component {
         return (
             <div>
                 <h1>Courses</h1>
-                <CourseList courses={courses}/>
+                <CourseList onDelete={this.deleteCourse} courses={courses}/>
                 <input type="submit"
                        value="Add Course"
                        className="btn btn-primary"

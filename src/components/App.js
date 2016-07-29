@@ -6,7 +6,9 @@ class App extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <Header loading={this.props.loading}/>
+                <Header loading={this.props.loading}
+                        authorCount={this.props.authorCount}
+                        courseCount={this.props.courseCount}/>
                 {this.props.children}
             </div>
         );
@@ -19,8 +21,10 @@ App.PropTypes = {
 };
 
 // Using loading from the store => have to dispatch to update loading
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
+        authorCount: state.authors.length,
+        courseCount: state.courses.length,
         loading: state.ajaxCallsInProgress > 0
     };
 }

@@ -10,6 +10,12 @@ export default function courseReducer(state = initialState.courses, action) {
             return [...state, action.course];
         case types.UPDATE_COURSE_SUCCESS:
             return [...state.filter(course => course.id !== action.course.id), action.course];
+        case types.DELETE_COURSE_SUCCESS: {
+            console.log(action.id);
+            return [...state.filter(course => course.id !== action.id)];
+
+        }
+
         default:
             return state;
     }
